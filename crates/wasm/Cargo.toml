@@ -1,0 +1,18 @@
+[package]
+name = "wasm"
+version = "0.1.0"
+edition = "2024"
+
+
+[dependencies]
+eframe = { version = "0.33.3", features = ["glow"] }            # adjust version as needed
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = ["HtmlCanvasElement"] }
+log = "0.4"
+console_error_panic_hook = "0.1"
+
+# You also need the crate containing your BreakoutApp
+core = { path = "../core" } # Adjust this path to where BreakoutApp lives
+
+[lib]
+crate-type = ["cdylib"]

@@ -1,4 +1,4 @@
 [workspace]
-members = ["crates/core", "crates/native"]
+members = ["crates/core", "crates/native", "crates/wasm"]
 
 resolver = "2"

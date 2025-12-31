@@ -1,14 +1,14 @@
 // Contains the rendering logic for a Game
 
 use crate::model::Game;
-use eframe::egui;
 use eframe::epaint::{Color32, Pos2, Vec2};
+use eframe::{egui, App};
 use rand;
 use rand::Rng;
 
 pub struct BreakoutApp {
     game: Game,
-    last_update: std::time::Instant,
+    last_update: instant::Instant,
 }
 
 impl BreakoutApp {
@@ -29,12 +29,12 @@ impl BreakoutApp {
 
         Self {
             game,
-            last_update: std::time::Instant::now(),
+            last_update: instant::Instant::now(),
         }
     }
 }
 
-impl eframe::App for BreakoutApp {
+impl App for BreakoutApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Rust game");
@@ -44,7 +44,7 @@ impl eframe::App for BreakoutApp {
 
             render_game(painter, &self.game);
 
-            self.last_update = std::time::Instant::now();
+            self.last_update = instant::Instant::now();
             ctx.request_repaint();
         });
     }
