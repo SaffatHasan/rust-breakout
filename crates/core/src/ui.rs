@@ -57,5 +57,5 @@ pub fn render_game(painter: &egui::Painter, game: &Game) {
     // Render ball
     painter.add(game.ball.get_shape());
 
-    println!("{:?}, {:?}", game.ball.center, game.ball.velocity);
+    // println!("{:?}, {:?}", game.ball.center, game.ball.velocity);
 }

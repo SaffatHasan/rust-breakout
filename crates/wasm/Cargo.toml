@@ -13,6 +13,7 @@ console_error_panic_hook = "0.1"
 
 # You also need the crate containing your BreakoutApp
 core = { path = "../core" } # Adjust this path to where BreakoutApp lives
+wasm-bindgen-futures = "0.4.56"
 
 [lib]
 crate-type = ["cdylib"]
