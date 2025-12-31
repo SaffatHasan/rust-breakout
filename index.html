@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Breakout WASM</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  <link rel="modulepreload" href="/wasm-dbc1d10acd46f52d.js" crossorigin="anonymous" integrity="sha384-XF8DXTMvv96N9NXSzVAnsq2sTJBqv7VgV2j1BG6vRCxyLce74ugWIll8Zy2DCKWq"><link rel="preload" href="/wasm-dbc1d10acd46f52d_bg.wasm" crossorigin="anonymous" integrity="sha384-1cP31x7j9ZT9MTLCPkfe4AJqZSRaDoXwOcMp2KkAXuN0Vv5MJ0+RUMu8gavbWUh2" as="fetch" type="application/wasm"></head>
+  <body>
+    <canvas id="the_canvas_id"></canvas>
+  
+<script type="module">
+import init, * as bindings from '/wasm-dbc1d10acd46f52d.js';
+const wasm = await init({ module_or_path: '/wasm-dbc1d10acd46f52d_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>
