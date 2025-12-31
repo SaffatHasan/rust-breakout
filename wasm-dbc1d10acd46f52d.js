@@ -292,12 +292,12 @@ if (!('encodeInto' in cachedTextEncoder)) {
 
 let WASM_VECTOR_LEN = 0;
 
-function wasm_bindgen__convert__closures_____invoke__hd091268abeeda651(arg0, arg1, arg2) {
-    wasm.wasm_bindgen__convert__closures_____invoke__hd091268abeeda651(arg0, arg1, arg2);
-}
-
 function wasm_bindgen__convert__closures_____invoke__h0aaed76adc9f9714(arg0, arg1, arg2) {
     wasm.wasm_bindgen__convert__closures_____invoke__h0aaed76adc9f9714(arg0, arg1, arg2);
+}
+
+function wasm_bindgen__convert__closures_____invoke__hd091268abeeda651(arg0, arg1, arg2) {
+    wasm.wasm_bindgen__convert__closures_____invoke__hd091268abeeda651(arg0, arg1, arg2);
 }
 
 function wasm_bindgen__convert__closures_____invoke__h79a95f53625acfba(arg0, arg1) {
