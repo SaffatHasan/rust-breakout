@@ -1,0 +1,30 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - uses: jetli/trunk-action@v0.5.1
+
+      - uses: Swatinem/rust-cache@v2
+
+      - working-directory: crates/wasm
+        run: |
+          trunk build --release --dist ../../dist --public-url /${{github.event.repository.name}} index.html
+
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
