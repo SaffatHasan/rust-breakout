@@ -1,7 +1,6 @@
-mod model;
-mod ui;
-
 use eframe::egui;
+
+use breakout_core::ui;
 
 fn main() -> eframe::Result<()> {
     let native_options = eframe::NativeOptions {

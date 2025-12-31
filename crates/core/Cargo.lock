@@ -459,6 +459,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "breakout"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "rand",
+]
+
+[[package]]
 name = "bumpalo"
 version = "3.19.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -623,14 +631,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4ca0197aee26d1ae37445ee532fefce43251d24cc7c166799f4d46817f1d3973"
 dependencies = [
  "crossbeam-utils",
-]
-
-[[package]]
-name = "core"
-version = "0.1.0"
-dependencies = [
- "eframe",
- "rand",
 ]
 
 [[package]]
@@ -1717,14 +1717,6 @@ dependencies = [
  "spirv",
  "thiserror 2.0.17",
  "unicode-ident",
-]
-
-[[package]]
-name = "native"
-version = "0.1.0"
-dependencies = [
- "core",
- "eframe",
 ]
 
 [[package]]
