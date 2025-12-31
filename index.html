@@ -17,13 +17,13 @@
         height: 100%;
       }
     </style>
-  <link rel="modulepreload" href="rust-breakout/wasm-dbc1d10acd46f52d.js" crossorigin="anonymous" integrity="sha384-xP77gB8CGLF47ITyp0C2kiNt4TErT1coksJKaZ57X8rHTm8kZvWsNj5B1ZZBE8cx"><link rel="preload" href="rust-breakout/wasm-dbc1d10acd46f52d_bg.wasm" crossorigin="anonymous" integrity="sha384-9LZb2RYdUFBPRCv8HqkyVYd7GeEPYQk8UG8Q9ywYhLmsmWYd6niYH8ZAeqCnWuJy" as="fetch" type="application/wasm"></head>
+  <link rel="modulepreload" href="/rust-breakout/wasm-dbc1d10acd46f52d.js" crossorigin="anonymous" integrity="sha384-yfivchqUOpoQcmOsPCHLfpD32H3UpQUxQAiMt656Stz6rXCTSbPm2E4FKkKxmMwV"><link rel="preload" href="/rust-breakout/wasm-dbc1d10acd46f52d_bg.wasm" crossorigin="anonymous" integrity="sha384-To8DxOQ42jd053WI3cN5D1x898HAe5pj1mjbmYwsVIAfbBbrV+vEullCSmWUtYSu" as="fetch" type="application/wasm"></head>
   <body>
     <canvas id="the_canvas_id"></canvas>
   
 <script type="module">
-import init, * as bindings from 'rust-breakout/wasm-dbc1d10acd46f52d.js';
-const wasm = await init({ module_or_path: 'rust-breakout/wasm-dbc1d10acd46f52d_bg.wasm' });
+import init, * as bindings from '/rust-breakout/wasm-dbc1d10acd46f52d.js';
+const wasm = await init({ module_or_path: '/rust-breakout/wasm-dbc1d10acd46f52d_bg.wasm' });
 
 
 window.wasmBindings = bindings;
