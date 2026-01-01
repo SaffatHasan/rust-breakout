@@ -47,7 +47,7 @@ impl App for BreakoutApp {
         egui::CentralPanel::default().show(ctx, |ui| {
             // This ensures the painter draws relative to this panel's location
             let (response, painter) =
-                ui.allocate_painter(egui::Vec2::new(800.0, 600.0), egui::Sense::hover());
+                ui.allocate_painter(ui.available_size(), egui::Sense::hover());
 
             // Update the internal game bounds to match the actual allocated screen rect
             self.game.game_bounds.rect = response.rect;
