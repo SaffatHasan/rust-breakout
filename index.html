@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <title>Breakout WASM</title>
     <link rel="stylesheet" href="/rust-breakout/style-70f43a971df40f91.css" integrity="sha384-PMWtSZvHna+3WadDYVHiVzlyovHviGnw2e9+/KRi1+/vGyAtqV0BZv/qrRO7POzD"/>
-  <link rel="modulepreload" href="/rust-breakout/wasm-dfe2e869960344d4.js" crossorigin="anonymous" integrity="sha384-M4XLfaCmjdAsyofB7JRVMhfi+3Q7nJUE5GniSqBq2sY78f/toEhpVgjDF5xP+hMg"><link rel="preload" href="/rust-breakout/wasm-dfe2e869960344d4_bg.wasm" crossorigin="anonymous" integrity="sha384-mVqRYYUxhoW3KT7OHVZ0HnkV1vusn3Mu+ooJVa1//jJ9NufHgslo/EMXGcrmMLPG" as="fetch" type="application/wasm"></head>
+  <link rel="modulepreload" href="/rust-breakout/wasm-76a30623897910d1.js" crossorigin="anonymous" integrity="sha384-XeOLsAi+8PACgsekqFyvNqGm+/f4m2m2vuuUVbVML1sKtRYSGGI+KzFi3OAOAlG/"><link rel="preload" href="/rust-breakout/wasm-76a30623897910d1_bg.wasm" crossorigin="anonymous" integrity="sha384-WOevQEO92AdQG5ogVq9IcwoRAstnNnTPaYkeqxdmvaIL+VakLe1Wzko/Wo4ZvBVD" as="fetch" type="application/wasm"></head>
   <body>
     <canvas id="the_canvas_id"></canvas>
   
 <script type="module">
-import init, * as bindings from '/rust-breakout/wasm-dfe2e869960344d4.js';
-const wasm = await init({ module_or_path: '/rust-breakout/wasm-dfe2e869960344d4_bg.wasm' });
+import init, * as bindings from '/rust-breakout/wasm-76a30623897910d1.js';
+const wasm = await init({ module_or_path: '/rust-breakout/wasm-76a30623897910d1_bg.wasm' });
 
 
 window.wasmBindings = bindings;
