@@ -21,26 +21,34 @@ impl App for BreakoutApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         // 1. Define the Bottom Panel for controls
         egui::TopBottomPanel::bottom("controls_panel").show(ctx, |ui| {
-            ui.add_space(4.0);
-            ui.horizontal(|ui| {
-                ui.label("BG:");
-                if ui.button("Black").clicked() {
-                    self.game.game_bounds.fill = Color32::BLACK;
-                }
-                if ui.button("Blue").clicked() {
-                    self.game.game_bounds.fill = Color32::from_rgb(0, 0, 100);
-                }
-                if ui.button("Green").clicked() {
-                    self.game.game_bounds.fill = Color32::from_rgb(0, 50, 0);
-                }
+            ui.style_mut()
+                .text_styles
+                .insert(egui::TextStyle::Body, FontId::proportional(20.0));
+            ui.style_mut()
+                .text_styles
+                .insert(egui::TextStyle::Button, FontId::proportional(20.0));
+            ui.style_mut().spacing.button_padding = egui::vec2(10.0, 8.0);
 
-                ui.separator();
+            ui.centered_and_justified(|ui| {
+                ui.horizontal(|ui| {
+                    ui.label("BG:");
+                    if ui.button("Black").clicked() {
+                        self.game.game_bounds.fill = Color32::BLACK;
+                    }
+                    if ui.button("Blue").clicked() {
+                        self.game.game_bounds.fill = Color32::from_rgb(0, 0, 100);
+                    }
+                    if ui.button("Green").clicked() {
+                        self.game.game_bounds.fill = Color32::from_rgb(0, 50, 0);
+                    }
 
-                if ui.button("🔄 Reset").clicked() {
-                    self.game = model::game::Game::default();
-                }
+                    ui.separator();
+
+                    if ui.button("🔄 Reset").clicked() {
+                        self.game = model::game::Game::default();
+                    }
+                });
             });
-            ui.add_space(4.0);
         });
 
         // 2. Define the Game Area in the Central Panel
