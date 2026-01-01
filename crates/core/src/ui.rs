@@ -46,10 +46,10 @@ impl BreakoutApp {
                         self.game.game_bounds.fill = Color32::BLACK;
                     }
                     if ui.button("Blue").clicked() {
-                        self.game.game_bounds.fill = Color32::from_rgb(0, 0, 100);
+                        self.game.game_bounds.fill = Color32::BLUE;
                     }
                     if ui.button("Green").clicked() {
-                        self.game.game_bounds.fill = Color32::from_rgb(0, 50, 0);
+                        self.game.game_bounds.fill = Color32::GREEN;
                     }
 
                     ui.separator();
