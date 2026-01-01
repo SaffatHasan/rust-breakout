@@ -10,6 +10,10 @@ pub struct Game {
     pub game_bounds: RectShape,
 }
 
+pub struct GameEvent {
+    pub has_collision: bool,
+}
+
 impl Default for Game {
     fn default() -> Self {
         Self {
@@ -26,7 +30,7 @@ impl Default for Game {
 }
 
 impl Game {
-    pub fn step(&mut self, delta_time: f32) {
+    pub fn step(&mut self, delta_time: f32) -> GameEvent {
         self.ball.center.x += self.ball.velocity.x * delta_time;
         self.ball.center.y += self.ball.velocity.y * delta_time;
 
@@ -60,9 +64,7 @@ impl Game {
             bounds.max.y,
         );
 
-        if has_collision {
-            self.ball.next_color();
-        }
+        GameEvent { has_collision }
     }
 }
 
@@ -92,7 +94,8 @@ mod tests {
         // New center: 5.0. Left edge: -5.0.
         // Overlap: 0.0 - (-5.0) = 5.0.
         // Correction: center += 5.0 * 2.0 = 10.0. New center = 15.0.
-        game.step(0.1);
+        let has_collision = game.step(0.1).has_collision;
+        assert!(has_collision);
 
         assert_eq!(game.ball.center.x, 15.0);
         assert_eq!(game.ball.velocity.x, 100.0); // Velocity flipped
@@ -111,7 +114,8 @@ mod tests {
         // New center: 795.0. Right edge: 805.0.
         // Overlap: 800.0 - 805.0 = -5.0.
         // Correction: center += -5.0 * 2.0 = -10.0. New center = 785.0.
-        game.step(0.1);
+        let has_collision = game.step(0.1).has_collision;
+        assert!(has_collision);
 
         assert_eq!(game.ball.center.x, 785.0);
         assert_eq!(game.ball.velocity.x, -100.0); // Velocity flipped
@@ -130,7 +134,8 @@ mod tests {
         // New center: 5.0. Top edge: -5.0.
         // Overlap: 0.0 - (-5.0) = 5.0.
         // Correction: center += 5.0 * 2.0 = 10.0. New center = 15.0.
-        game.step(0.1);
+        let has_collision = game.step(0.1).has_collision;
+        assert!(has_collision);
 
         assert_eq!(game.ball.center.y, 15.0);
         assert_eq!(game.ball.velocity.y, 100.0); // Velocity flipped
@@ -149,7 +154,8 @@ mod tests {
         // New center: 595.0. Bottom edge: 605.0.
         // Overlap: 600.0 - 605.0 = -5.0.
         // Correction: center += -5.0 * 2.0 = -10.0. New center = 585.0.
-        game.step(0.1);
+        let has_collision = game.step(0.1).has_collision;
+        assert!(has_collision);
 
         assert_eq!(game.ball.center.y, 585.0);
         assert_eq!(game.ball.velocity.y, -100.0); // Velocity flipped

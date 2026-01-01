@@ -1,11 +1,18 @@
 use crate::model;
 use eframe::epaint::{Color32, FontId};
 use eframe::{egui, App};
+use std::time::Duration;
 
 pub struct BreakoutApp {
     game: model::game::Game,
     last_update: instant::Instant,
     initialized: bool,
+    rainbow_mode: RainbowMode,
+}
+
+pub struct RainbowMode {
+    pub enabled: bool,
+    pub last_update: instant::Instant,
 }
 
 impl BreakoutApp {
@@ -14,6 +21,10 @@ impl BreakoutApp {
             game: model::game::Game::default(),
             last_update: instant::Instant::now(),
             initialized: false,
+            rainbow_mode: RainbowMode {
+                enabled: true,
+                last_update: instant::Instant::now(),
+            },
         };
         app
     }
@@ -46,9 +57,15 @@ impl App for BreakoutApp {
 
                     ui.separator();
 
+                    ui.label("Ball:");
+                    ui.toggle_value(&mut self.rainbow_mode.enabled, "🌈 Rainbow");
+
+                    ui.separator();
+
                     if ui.button("🔄 Reset").clicked() {
                         self.game = model::game::Game::default();
                         self.initialized = false;
+                        self.rainbow_mode.enabled = false;
                     }
                 });
             });
@@ -77,7 +94,16 @@ impl App for BreakoutApp {
             }
 
             let delta_time = self.last_update.elapsed().as_secs_f32();
-            self.game.step(delta_time);
+            let game_event = self.game.step(delta_time);
+
+            if self.rainbow_mode.enabled {
+                if self.rainbow_mode.last_update.elapsed() > Duration::from_millis(250) {
+                    self.rainbow_mode.last_update = instant::Instant::now();
+                    self.game.ball.next_color();
+                }
+            } else if game_event.has_collision {
+                self.game.ball.next_color();
+            }
 
             // --- RENDERING ---
             // Render Background
