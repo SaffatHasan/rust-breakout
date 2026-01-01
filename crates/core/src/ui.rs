@@ -5,6 +5,7 @@ use eframe::{egui, App};
 pub struct BreakoutApp {
     game: model::game::Game,
     last_update: instant::Instant,
+    initialized: bool,
 }
 
 impl BreakoutApp {
@@ -12,6 +13,7 @@ impl BreakoutApp {
         let app = Self {
             game: model::game::Game::default(),
             last_update: instant::Instant::now(),
+            initialized: false,
         };
         app
     }
@@ -46,6 +48,7 @@ impl App for BreakoutApp {
 
                     if ui.button("🔄 Reset").clicked() {
                         self.game = model::game::Game::default();
+                        self.initialized = false;
                     }
                 });
             });
@@ -59,6 +62,19 @@ impl App for BreakoutApp {
 
             // Update the internal game bounds to match the actual allocated screen rect
             self.game.game_bounds.rect = response.rect;
+
+            if !self.initialized {
+                self.initialized = true;
+                self.game.ball.center = response.rect.center();
+            }
+
+            // Scale ball size and speed based on the available area
+            let min_dim = response.rect.width().min(response.rect.height());
+            let scale = min_dim / 600.0;
+            self.game.ball.radius = 50.0 * scale;
+            if self.game.ball.velocity.length_sq() > 0.0 {
+                self.game.ball.velocity = self.game.ball.velocity.normalized() * (200.0 * scale);
+            }
 
             let delta_time = self.last_update.elapsed().as_secs_f32();
             self.game.step(delta_time);

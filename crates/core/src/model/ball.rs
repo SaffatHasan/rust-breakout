@@ -13,7 +13,7 @@ pub struct Ball {
 impl Default for Ball {
     fn default() -> Self {
         Ball {
-            center: Pos2::new(400.0, 300.0),
+            center: Pos2::new(0.0, 0.0),
             radius: 50.0,
             velocity: Vec2::angled(rand::rng().random_range(0.0..std::f32::consts::TAU)) * 200.0,
             fill: Color32::WHITE,
