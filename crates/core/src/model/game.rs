@@ -1,4 +1,3 @@
-pub mod ball;
 use crate::model::ball::Ball;
 
 use eframe::{

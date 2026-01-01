@@ -1,16 +1,16 @@
-use crate::model::Game;
+use crate::model;
 use eframe::epaint::{Color32, FontId};
 use eframe::{egui, App};
 
 pub struct BreakoutApp {
-    game: Game,
+    game: model::game::Game,
     last_update: instant::Instant,
 }
 
 impl BreakoutApp {
     pub fn new(_cc: &eframe::CreationContext<'_>) -> Self {
         let app = Self {
-            game: Game::default(),
+            game: model::game::Game::default(),
             last_update: instant::Instant::now(),
         };
         app
@@ -37,7 +37,7 @@ impl App for BreakoutApp {
                 ui.separator();
 
                 if ui.button("🔄 Reset").clicked() {
-                    self.game = Game::default();
+                    self.game = model::game::Game::default();
                 }
             });
             ui.add_space(4.0);
