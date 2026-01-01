@@ -28,11 +28,8 @@ impl BreakoutApp {
         };
         app
     }
-}
 
-impl App for BreakoutApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // 1. Define the Bottom Panel for controls
+    fn show_controls(&mut self, ctx: &egui::Context) {
         egui::TopBottomPanel::bottom("controls_panel").show(ctx, |ui| {
             ui.style_mut()
                 .text_styles
@@ -70,8 +67,9 @@ impl App for BreakoutApp {
                 });
             });
         });
+    }
 
-        // 2. Define the Game Area in the Central Panel
+    fn show_game_area(&mut self, ctx: &egui::Context) {
         egui::CentralPanel::default().show(ctx, |ui| {
             // This ensures the painter draws relative to this panel's location
             let (response, painter) =
@@ -128,5 +126,12 @@ impl App for BreakoutApp {
             self.last_update = instant::Instant::now();
             ctx.request_repaint();
         });
+    }
+}
+
+impl App for BreakoutApp {
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        self.show_controls(ctx);
+        self.show_game_area(ctx);
     }
 }

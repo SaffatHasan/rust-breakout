@@ -18,10 +18,8 @@ impl Default for Ball {
             velocity: Vec2::angled(rand::rng().random_range(0.0..std::f32::consts::TAU)) * 200.0,
             fill: Color32::WHITE,
             fill_colors: vec![
-                Color32::BLUE,
                 Color32::CYAN,
                 Color32::GOLD,
-                Color32::GREEN,
                 Color32::KHAKI,
                 Color32::LIGHT_BLUE,
                 Color32::LIGHT_GRAY,
